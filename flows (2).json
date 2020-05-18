@@ -1,0 +1,184 @@
+[
+    {
+        "id": "d0d85ff2.0f31e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "81a35420.f26278",
+        "type": "ui_form",
+        "z": "d0d85ff2.0f31e",
+        "name": "form",
+        "label": "",
+        "group": "eee5eb1.9de6f18",
+        "order": 0,
+        "width": "6",
+        "height": "6",
+        "options": [
+            {
+                "label": "enter your queries",
+                "value": "text",
+                "type": "text",
+                "required": true,
+                "rows": null
+            }
+        ],
+        "formValue": {
+            "text": ""
+        },
+        "payload": "",
+        "submit": "submit",
+        "cancel": "cancel",
+        "topic": "",
+        "x": 70,
+        "y": 400,
+        "wires": [
+            [
+                "2fc109df.9935e6"
+            ]
+        ]
+    },
+    {
+        "id": "e4411f54.83b62",
+        "type": "ui_text",
+        "z": "d0d85ff2.0f31e",
+        "group": "eee5eb1.9de6f18",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "you",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "x": 310,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "8ea21b5b.9dfc78",
+        "type": "inject",
+        "z": "d0d85ff2.0f31e",
+        "name": "",
+        "topic": "",
+        "payload": "hello",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 120,
+        "wires": [
+            [
+                "3464ad27.b91b72"
+            ]
+        ]
+    },
+    {
+        "id": "2fc109df.9935e6",
+        "type": "function",
+        "z": "d0d85ff2.0f31e",
+        "name": "input parse",
+        "func": "msg.payload=msg.payload.text;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 190,
+        "y": 300,
+        "wires": [
+            [
+                "3464ad27.b91b72",
+                "e4411f54.83b62"
+            ]
+        ]
+    },
+    {
+        "id": "971684ee.01b3d8",
+        "type": "function",
+        "z": "d0d85ff2.0f31e",
+        "name": "parsing",
+        "func": "msg.payload=msg.payload.output.text[0];\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 560,
+        "y": 200,
+        "wires": [
+            [
+                "ae891913.e5e228",
+                "de71deca.ca4b1"
+            ]
+        ]
+    },
+    {
+        "id": "ae891913.e5e228",
+        "type": "ui_text",
+        "z": "d0d85ff2.0f31e",
+        "group": "eee5eb1.9de6f18",
+        "order": 0,
+        "width": "6",
+        "height": "9",
+        "name": "",
+        "label": "bot",
+        "format": "{{msg.payload}}",
+        "layout": "row-left",
+        "x": 730,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "de71deca.ca4b1",
+        "type": "debug",
+        "z": "d0d85ff2.0f31e",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "x": 730,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "3464ad27.b91b72",
+        "type": "watson-conversation-v1",
+        "z": "d0d85ff2.0f31e",
+        "name": "customer service bot",
+        "workspaceid": "2b5beca9-21e4-4391-b502-309530f12a63",
+        "multiuser": false,
+        "context": true,
+        "empty-payload": false,
+        "service-endpoint": "",
+        "timeout": "",
+        "optout-learning": false,
+        "x": 340,
+        "y": 220,
+        "wires": [
+            [
+                "971684ee.01b3d8"
+            ]
+        ]
+    },
+    {
+        "id": "eee5eb1.9de6f18",
+        "type": "ui_group",
+        "z": "",
+        "name": "form",
+        "tab": "59bfe54e.277f4c",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false
+    },
+    {
+        "id": "59bfe54e.277f4c",
+        "type": "ui_tab",
+        "z": "",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]
